@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Project One",
+        "description": "A custom e-commerce website built for a local retailer, featuring a unique design and seamless user experience.",
+        "image": "images/portfolio-1.svg",
+        "pageSpeedScore": 98
+    },
+    {
+        "id": 2,
+        "title": "Project Two",
+        "description": "A portfolio website for a freelance photographer, showcasing their work with a clean and modern layout.",
+        "image": "images/portfolio-2.svg",
+        "pageSpeedScore": 95
+    },
+    {
+        "id": 3,
+        "title": "Project Three",
+        "description": "A restaurant website with an online reservation system and menu display, designed to enhance customer engagement.",
+        "image": "images/portfolio-3.svg",
+        "pageSpeedScore": 97
+    },
+    {
+        "id": 4,
+        "title": "Project Four",
+        "description": "A corporate website for a consulting firm, featuring a professional design and easy navigation.",
+        "image": "images/portfolio-4.svg",
+        "pageSpeedScore": 96
+    }
+]

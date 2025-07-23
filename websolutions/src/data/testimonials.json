@@ -1,0 +1,26 @@
+[
+    {
+        "name": "John Doe",
+        "company": "Doe Enterprises",
+        "testimonial": "Websolutions transformed our online presence with a stunning custom website. The process was seamless and the support is outstanding!",
+        "image": "public/images/testimonial-1.svg"
+    },
+    {
+        "name": "Jane Smith",
+        "company": "Smith Consulting",
+        "testimonial": "I love my new website! The team at Websolutions was incredibly responsive and delivered exactly what I needed.",
+        "image": "public/images/testimonial-1.svg"
+    },
+    {
+        "name": "Mike Johnson",
+        "company": "Johnson & Co.",
+        "testimonial": "Affordable and high-quality service! I couldn't be happier with my website and the ongoing support.",
+        "image": "public/images/testimonial-1.svg"
+    },
+    {
+        "name": "Emily Davis",
+        "company": "Davis Designs",
+        "testimonial": "The custom design is beautiful and the performance is top-notch. Highly recommend Websolutions!",
+        "image": "public/images/testimonial-1.svg"
+    }
+]
