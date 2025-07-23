@@ -14,43 +14,21 @@ const Testimonials = () => {
   const testimonials = [
     {
       id: 1,
-      name: "Sarah Johnson",
-      title: "Restaurant Owner",
-      company: "Bella Vista Bistro",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=80&h=80&fit=crop&crop=face",
+      name: "Michael R.",
+      title: "Local Business Owner",
+      company: "Thompson's Auto Repair",
       rating: 5,
-      text: "Websolutions transformed our online presence completely. Our website loads incredibly fast and we've seen a 300% increase in online reservations. The $100/month is worth every penny!",
-      results: "+300% reservations"
+      text: "After struggling with a slow WordPress site for years, WebSolutions built us a lightning-fast custom website. Our online bookings increased significantly and customers always comment on how professional it looks.",
+      results: "Much faster site"
     },
     {
       id: 2,
-      name: "Michael Chen",
-      title: "Tech Startup Founder",
-      company: "InnovateLab",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=80&h=80&fit=crop&crop=face",
+      name: "Jennifer L.",
+      title: "Restaurant Manager", 
+      company: "Downtown Cafe",
       rating: 5,
-      text: "As a tech person myself, I was impressed by their code quality. Clean, fast, and scalable. Our PageSpeed went from 60 to 98. The team is incredibly responsive.",
-      results: "98 PageSpeed Score"
-    },
-    {
-      id: 3,
-      name: "Emily Rodriguez",
-      title: "E-commerce Owner",
-      company: "Fashion Forward",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&h=80&fit=crop&crop=face",
-      rating: 5,
-      text: "The custom e-commerce solution they built for us is amazing. No clunky WordPress plugins, just smooth, fast shopping experience. Sales increased by 150% in the first month.",
-      results: "+150% sales"
-    },
-    {
-      id: 4,
-      name: "David Thompson",
-      title: "Service Business Owner",
-      company: "GreenThumb Landscaping",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&h=80&fit=crop&crop=face",
-      rating: 5,
-      text: "I love that I can request unlimited changes and they handle everything. The website brings in 5-10 new leads per week. Best investment I've made for my business.",
-      results: "5-10 leads/week"
+      text: "The monthly service is perfect for our small business. Whenever we need menu updates or changes, they handle it immediately. No more waiting weeks or paying extra fees like with our old provider.",
+      results: "Quick updates"
     }
   ]
 
@@ -60,7 +38,7 @@ const Testimonials = () => {
       setCurrentIndex((prevIndex) => 
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       )
-    }, 5000)
+    }, 6000) // Increased time since there are fewer testimonials
 
     return () => clearInterval(interval)
   }, [testimonials.length])
@@ -105,8 +83,7 @@ const Testimonials = () => {
             What Our <span className="gradient-text">Clients</span> Say
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Don't just take our word for it. See what business owners are saying 
-            about their experience with Websolutions.
+            Real feedback from local business owners who chose WebSolutions.
           </p>
         </motion.div>
 
@@ -163,69 +140,63 @@ const Testimonials = () => {
                   transition={{ delay: 0.7 }}
                   className="inline-flex items-center bg-gradient-to-r from-green-100 to-green-200 dark:from-green-900/30 dark:to-green-800/30 text-green-700 dark:text-green-300 px-4 py-2 rounded-full font-semibold mb-6"
                 >
-                  📈 {testimonials[currentIndex].results}
+                  ✓ {testimonials[currentIndex].results}
                 </motion.div>
 
-                {/* Author Info */}
-                <div className="flex items-center justify-center space-x-4">
-                  <motion.img
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.6 }}
-                    src={testimonials[currentIndex].image}
-                    alt={testimonials[currentIndex].name}
-                    className="w-16 h-16 rounded-full object-cover border-4 border-primary-200 dark:border-primary-800"
-                  />
-                  <div className="text-left">
-                    <h4 className="font-bold text-gray-900 dark:text-white text-lg">
-                      {testimonials[currentIndex].name}
-                    </h4>
-                    <p className="text-gray-600 dark:text-gray-400">
-                      {testimonials[currentIndex].title}
-                    </p>
-                    <p className="text-primary-600 dark:text-primary-400 font-medium">
-                      {testimonials[currentIndex].company}
-                    </p>
-                  </div>
+                {/* Author Info - No Photos */}
+                <div className="text-center">
+                  <h4 className="font-bold text-gray-900 dark:text-white text-lg mb-1">
+                    {testimonials[currentIndex].name}
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {testimonials[currentIndex].title}
+                  </p>
+                  <p className="text-primary-600 dark:text-primary-400 font-medium">
+                    {testimonials[currentIndex].company}
+                  </p>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
-          <motion.button
-            onClick={prevTestimonial}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white dark:bg-dark-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700"
-          >
-            <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </motion.button>
-
-          <motion.button
-            onClick={nextTestimonial}
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white dark:bg-dark-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700"
-          >
-            <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
-          </motion.button>
-
-          {/* Dots Indicator */}
-          <div className="flex justify-center space-x-2 mt-8">
-            {testimonials.map((_, index) => (
+          {/* Navigation Buttons - Only show if more than 1 testimonial */}
+          {testimonials.length > 1 && (
+            <>
               <motion.button
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                whileHover={{ scale: 1.2 }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === currentIndex
-                    ? 'bg-gradient-to-r from-primary-500 to-secondary-500'
-                    : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
-                }`}
-              />
-            ))}
-          </div>
+                onClick={prevTestimonial}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute left-0 top-1/2 transform -translate-y-1/2 -translate-x-4 bg-white dark:bg-dark-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700"
+              >
+                <ChevronLeft className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              </motion.button>
+
+              <motion.button
+                onClick={nextTestimonial}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 translate-x-4 bg-white dark:bg-dark-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all border border-gray-200 dark:border-gray-700"
+              >
+                <ChevronRight className="w-6 h-6 text-gray-700 dark:text-gray-300" />
+              </motion.button>
+
+              {/* Dots Indicator */}
+              <div className="flex justify-center space-x-2 mt-8">
+                {testimonials.map((_, index) => (
+                  <motion.button
+                    key={index}
+                    onClick={() => setCurrentIndex(index)}
+                    whileHover={{ scale: 1.2 }}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      index === currentIndex
+                        ? 'bg-gradient-to-r from-primary-500 to-secondary-500'
+                        : 'bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500'
+                    }`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         {/* Statistics */}
@@ -233,12 +204,11 @@ const Testimonials = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16"
         >
           {[
-            { number: "100+", label: "Happy Clients", icon: "😊" },
+            { number: "50+", label: "Happy Clients", icon: "😊" },
             { number: "99%", label: "Satisfaction Rate", icon: "⭐" },
-            { number: "48hrs", label: "Average Delivery", icon: "⚡" },
             { number: "24/7", label: "Support Available", icon: "🛟" },
           ].map((stat, index) => (
             <motion.div
