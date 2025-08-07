@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Gauge, Smartphone, Monitor } from 'lucide-react'
@@ -11,153 +11,106 @@ const Portfolio = () => {
 
   const [activeFilter, setActiveFilter] = useState('all')
   const [visibleCount, setVisibleCount] = useState(6)
+  const [portfolioData, setPortfolioData] = useState([])
 
-  const projects = [
-    {
-      id: 1,
-      title: "Bella Vista Restaurant",
-      category: "restaurant",
-      image: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop&crop=center",
-      speed: 98,
-      description: "Modern restaurant website with online reservations and menu showcase",
-      tags: ["React", "Node.js", "Stripe"]
-    },
-    {
-      id: 2,
-      title: "TechStart Solutions",
-      category: "business",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop&crop=center",
-      speed: 96,
-      description: "Professional business website with CRM integration",
-      tags: ["Next.js", "TypeScript", "CRM"]
-    },
-    {
-      id: 3,
-      title: "Green Thumb Landscaping",
-      category: "service",
-      image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop&crop=center",
-      speed: 99,
-      description: "Service-based website with project gallery and contact forms",
-      tags: ["React", "Tailwind", "Forms"]
-    },
-    {
-      id: 4,
-      title: "Fashion Forward Boutique",
-      category: "ecommerce",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=400&h=300&fit=crop&crop=center",
-      speed: 97,
-      description: "E-commerce platform with custom shopping cart",
-      tags: ["React", "Commerce", "PayPal"]
-    },
-    {
-      id: 5,
-      title: "Ocean View Hotel",
-      category: "restaurant",
-      image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=400&h=300&fit=crop&crop=center",
-      speed: 95,
-      description: "Luxury hotel website with booking system and virtual tours",
-      tags: ["React", "Booking", "360° Tours"]
-    },
-    {
-      id: 6,
-      title: "FitLife Gym & Wellness",
-      category: "service",
-      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=400&h=300&fit=crop&crop=center",
-      speed: 98,
-      description: "Fitness center website with class schedules and membership portal",
-      tags: ["React", "Calendar", "Payments"]
-    },
-    {
-      id: 7,
-      title: "InnovateTech Startup",
-      category: "business",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop&crop=center",
-      speed: 97,
-      description: "Cutting-edge startup website with investor dashboard and pitch deck",
-      tags: ["Next.js", "Analytics", "Dashboard"]
-    },
-    {
-      id: 8,
-      title: "Luxe Electronics Store",
-      category: "ecommerce",
-      image: "https://images.unsplash.com/photo-1468495244123-6c6c332eeece?w=400&h=300&fit=crop&crop=center",
-      speed: 94,
-      description: "Premium electronics e-commerce with AR product preview",
-      tags: ["React", "AR", "Shopify"]
-    },
-    {
-      id: 9,
-      title: "Artisan Coffee Roasters",
-      category: "restaurant",
-      image: "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop&crop=center",
-      speed: 99,
-      description: "Coffee shop website with subscription service and brew guides",
-      tags: ["React", "Subscription", "Blog"]
-    },
-    {
-      id: 10,
-      title: "Elite Law Firm",
-      category: "service",
-      image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=400&h=300&fit=crop&crop=center",
-      speed: 96,
-      description: "Professional law firm website with case studies and consultation booking",
-      tags: ["Next.js", "Legal", "Consultation"]
-    },
-    {
-      id: 11,
-      title: "MedTech Innovations",
-      category: "business",
-      image: "https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=300&fit=crop&crop=center",
-      speed: 98,
-      description: "Medical technology company with product showcase and research portal",
-      tags: ["React", "Healthcare", "Research"]
-    },
-    {
-      id: 12,
-      title: "Urban Style Marketplace",
-      category: "ecommerce",
-      image: "https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=400&h=300&fit=crop&crop=center",
-      speed: 95,
-      description: "Multi-vendor marketplace for fashion and lifestyle brands",
-      tags: ["React", "Multi-vendor", "Fashion"]
-    },
-    {
-      id: 13,
-      title: "Prime Auto Dealership",
-      category: "service",
-      image: "https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?w=400&h=300&fit=crop&crop=center",
-      speed: 97,
-      description: "Car dealership website with inventory management and financing calculator",
-      tags: ["React", "Inventory", "Calculator"]
-    },
-    {
-      id: 14,
-      title: "Gourmet Food Delivery",
-      category: "restaurant",
-      image: "https://images.unsplash.com/photo-1526367790999-0150786686a2?w=400&h=300&fit=crop&crop=center",
-      speed: 98,
-      description: "Food delivery platform with real-time tracking and chef profiles",
-      tags: ["React", "Real-time", "Maps"]
-    },
-    {
-      id: 15,
-      title: "CloudSync Enterprise",
-      category: "business",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=400&h=300&fit=crop&crop=center",
-      speed: 99,
-      description: "Enterprise cloud solutions website with security features and pricing calculator",
-      tags: ["Next.js", "Cloud", "Security"]
-    },
-    {
-      id: 16,
-      title: "Handmade Crafts Bazaar",
-      category: "ecommerce",
-      image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=400&h=300&fit=crop&crop=center",
-      speed: 96,
-      description: "Artisan marketplace with custom order system and artist profiles",
-      tags: ["React", "Custom Orders", "Artists"]
+  // Load portfolio data
+  useEffect(() => {
+    const loadPortfolioData = async () => {
+      try {
+        const response = await fetch('/src/data/portfolio.json')
+        const data = await response.json()
+        setPortfolioData(data)
+      } catch (error) {
+        console.error('Error loading portfolio data:', error)
+        // Fallback data if JSON fails to load
+        setPortfolioData([
+          {
+            id: 1,
+            title: "Project One",
+            category: "business",
+            description: "A custom e-commerce website built for a local retailer, featuring a unique design and seamless user experience.",
+            image: "images/portfolio-1.svg",
+            speed: 98,
+            tags: ["React", "E-commerce", "Custom Design"]
+          },
+          {
+            id: 2,
+            title: "Project Two", 
+            category: "service",
+            description: "A portfolio website for a freelance photographer, showcasing their work with a clean and modern layout.",
+            image: "images/portfolio-2.svg",
+            speed: 95,
+            tags: ["React", "Portfolio", "Photography"]
+          },
+          {
+            id: 3,
+            title: "Project Three",
+            category: "restaurant", 
+            description: "A restaurant website with an online reservation system and menu display, designed to enhance customer engagement.",
+            image: "images/portfolio-3.svg",
+            speed: 97,
+            tags: ["React", "Restaurant", "Reservations"]
+          },
+          {
+            id: 4,
+            title: "Project Four",
+            category: "business",
+            description: "A corporate website for a consulting firm, featuring a professional design and easy navigation.",
+            image: "images/portfolio-4.svg",
+            speed: 96,
+            tags: ["Next.js", "Corporate", "Consulting"]
+          },
+          {
+            id: 5,
+            title: "Website Screenshots Demo",
+            category: "business",
+            description: "Comprehensive website demonstration showing various layouts and design patterns for business websites.",
+            image: "images/first page.png",
+            speed: 98,
+            tags: ["Demo", "Layouts", "Business"]
+          },
+          {
+            id: 6,
+            title: "Mobile-First Design",
+            category: "service",
+            description: "Responsive website design showcasing mobile-first approach and cross-device compatibility.",
+            image: "images/screen.png", 
+            speed: 99,
+            tags: ["Mobile-First", "Responsive", "UX"]
+          },
+          {
+            id: 7,
+            title: "Dashboard Interface",
+            category: "business",
+            description: "Modern dashboard interface with data visualization and user management features.",
+            image: "images/Screenshot 2025-07-30 181812.png",
+            speed: 97,
+            tags: ["Dashboard", "Data Viz", "Admin"]
+          },
+          {
+            id: 8,
+            title: "Application Interface",
+            category: "business", 
+            description: "Clean application interface design with intuitive navigation and modern UI components.",
+            image: "images/Screenshot 2025-08-01 084447.png",
+            speed: 96,
+            tags: ["App Interface", "UI/UX", "Modern"]
+          },
+          {
+            id: 9,
+            title: "Latest Project Showcase",
+            category: "ecommerce",
+            description: "Recent project featuring advanced e-commerce functionality and custom shopping experience.",
+            image: "images/Screenshot 2025-08-06 210701.png",
+            speed: 98,
+            tags: ["E-commerce", "Custom", "Recent"]
+          }
+        ])
+      }
     }
-  ]
+
+    loadPortfolioData()
+  }, [])
 
   const filters = [
     { id: 'all', label: 'All Projects' },
@@ -168,8 +121,8 @@ const Portfolio = () => {
   ]
 
   const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
+    ? portfolioData 
+    : portfolioData.filter(project => project.category === activeFilter)
 
   const visibleProjects = filteredProjects.slice(0, visibleCount)
   const hasMore = visibleCount < filteredProjects.length
@@ -234,6 +187,7 @@ const Portfolio = () => {
           key={activeFilter}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
           className="text-center text-gray-600 dark:text-gray-400 mb-8"
         >
           Showing <span className="font-semibold text-primary-600 dark:text-primary-400">{visibleProjects.length}</span> 
@@ -295,7 +249,7 @@ const Portfolio = () => {
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags.map((tag, tagIndex) => (
+                      {project.tags && project.tags.map((tag, tagIndex) => (
                         <span
                           key={tagIndex}
                           className="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs rounded-full font-medium"

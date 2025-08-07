@@ -30,12 +30,12 @@ function App() {
       setLoadingProgress(prev => {
         if (prev >= 100) {
           clearInterval(progressInterval)
-          setTimeout(() => setIsLoading(false), 500)
+          setTimeout(() => setIsLoading(false), 800)
           return 100
         }
-        return prev + Math.random() * 15
+        return prev + Math.random() * 12
       })
-    }, 150)
+    }, 120)
 
     return () => clearInterval(progressInterval)
   }, [])
@@ -43,215 +43,124 @@ function App() {
   if (isLoading) {
     return (
       <motion.div 
-        className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
-        style={{
-          background: `
-            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.15) 0%, transparent 50%),
-            radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.1) 0%, transparent 50%),
-            linear-gradient(135deg, #fafafa 0%, #f8f9fa 50%, #ffffff 100%)
-          `
-        }}
+        className="fixed inset-0 z-50 flex items-center justify-center bg-white dark:bg-gray-900"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
       >
-        {/* Animated Background Particles */}
-        <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-gradient-to-r from-blue-400/20 to-purple-400/20 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -100, 0],
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-                ease: "easeInOut"
-              }}
-            />
-          ))}
-        </div>
-
         {/* Main Loading Content */}
         <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
+          initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="relative z-10 text-center max-w-md mx-auto px-6"
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center max-w-md mx-auto px-6"
         >
-          {/* Sophisticated Logo Animation */}
+          {/* Modern Logo Animation */}
           <motion.div className="relative mb-12">
-            {/* Outer Orbit Ring */}
+            {/* Main Logo Container */}
             <motion.div
+              className="relative w-20 h-20 mx-auto"
+              initial={{ rotate: 0 }}
               animate={{ rotate: 360 }}
-              transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-0 w-32 h-32 mx-auto"
-            >
-              <div className="w-full h-full border border-gray-200/30 rounded-full relative">
-                <motion.div
-                  animate={{ scale: [1, 1.1, 1] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full shadow-lg"
-                />
-              </div>
-            </motion.div>
-
-            {/* Middle Ring */}
-            <motion.div
-              animate={{ rotate: -360 }}
-              transition={{ duration: 6, repeat: Infinity, ease: "linear" }}
-              className="absolute inset-4 w-24 h-24 mx-auto"
-            >
-              <div className="w-full h-full border border-gray-300/40 rounded-full relative">
-                <motion.div
-                  animate={{ scale: [1, 1.2, 1] }}
-                  transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-                  className="absolute top-1/2 right-0 transform translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full shadow-md"
-                />
-              </div>
-            </motion.div>
-
-            {/* Inner Core */}
-            <motion.div
-              animate={{ 
-                scale: [1, 1.05, 1],
-                rotate: [0, 180, 360]
-              }}
               transition={{ 
-                scale: { duration: 3, repeat: Infinity, ease: "easeInOut" },
-                rotate: { duration: 4, repeat: Infinity, ease: "linear" }
+                duration: 3, 
+                repeat: Infinity, 
+                ease: "linear" 
               }}
-              className="relative w-16 h-16 mx-auto bg-gradient-to-br from-slate-50 to-gray-100 rounded-full shadow-2xl border border-gray-200/50 flex items-center justify-center"
             >
+              {/* Outer Ring */}
+              <div className="absolute inset-0 border-2 border-gray-200 dark:border-gray-700 rounded-full" />
+              
+              {/* Inner Dot */}
               <motion.div
-                animate={{ rotate: [0, -360] }}
-                transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-                className="w-6 h-6 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 rounded-full shadow-lg"
+                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-gray-900 dark:bg-white rounded-full"
+                animate={{ 
+                  scale: [1, 1.2, 1],
+                }}
+                transition={{ 
+                  duration: 2, 
+                  repeat: Infinity, 
+                  ease: "easeInOut" 
+                }}
+              />
+              
+              {/* Moving Dot */}
+              <motion.div
+                className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2 h-2 bg-gray-600 dark:bg-gray-400 rounded-full"
+                animate={{ 
+                  rotate: [0, 360],
+                  scale: [1, 0.8, 1]
+                }}
+                transition={{ 
+                  rotate: { duration: 1.5, repeat: Infinity, ease: "linear" },
+                  scale: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+                }}
+                style={{ transformOrigin: "50% 40px" }}
               />
             </motion.div>
-
-            {/* Glow Effect */}
-            <motion.div
-              animate={{ 
-                scale: [1, 1.2, 1],
-                opacity: [0.3, 0.6, 0.3]
-              }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="absolute inset-0 w-32 h-32 mx-auto bg-gradient-to-br from-blue-400/20 via-purple-400/20 to-pink-400/20 rounded-full blur-xl"
-            />
           </motion.div>
 
-          {/* Brand Name with Letter Animation */}
-          <motion.div className="mb-6">
-            <div className="flex justify-center items-center space-x-1">
-              {'Websolutions'.split('').map((letter, index) => (
-                <motion.span
-                  key={index}
-                  initial={{ y: 50, opacity: 0 }}
-                  animate={{ y: 0, opacity: 1 }}
-                  transition={{ 
-                    delay: 0.8 + index * 0.05,
-                    duration: 0.6,
-                    ease: [0.25, 0.46, 0.45, 0.94]
-                  }}
-                  className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white font-display inline-block"
-                  style={{
-                    background: 'linear-gradient(135deg, #1e293b 0%, #475569 50%, #334155 100%)',
-                    backgroundClip: 'text',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                  }}
-                >
-                  {letter}
-                </motion.span>
-              ))}
-            </div>
+          {/* Brand Name */}
+          <motion.div className="mb-8">
+            <motion.h1
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight"
+            >
+              Websolutions
+            </motion.h1>
+            
+            <motion.p
+              initial={{ y: 10, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+              className="text-gray-600 dark:text-gray-400 text-lg font-medium mt-2"
+            >
+              Crafting digital excellence
+            </motion.p>
           </motion.div>
-
-          {/* Elegant Tagline */}
-          <motion.p
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 1.3, duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="text-gray-600 dark:text-gray-400 text-lg font-medium mb-8 tracking-wide"
-          >
-            Crafting digital excellence
-          </motion.p>
 
           {/* Progress Bar */}
           <motion.div
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "100%", opacity: 1 }}
-            transition={{ delay: 1.5, duration: 0.8 }}
-            className="relative h-1 bg-gray-200/50 rounded-full overflow-hidden mb-4"
+            transition={{ delay: 0.7, duration: 0.6 }}
+            className="relative h-1 bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mb-4 max-w-xs mx-auto"
           >
             <motion.div
-              className="h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 rounded-full relative"
+              className="h-full bg-gray-900 dark:bg-white rounded-full"
               initial={{ width: "0%" }}
               animate={{ width: `${loadingProgress}%` }}
               transition={{ duration: 0.3, ease: "easeOut" }}
-            >
-              <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                animate={{ x: ['-100%', '100%'] }}
-                transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-              />
-            </motion.div>
+            />
           </motion.div>
 
           {/* Progress Percentage */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 1.7, duration: 0.6 }}
-            className="text-sm text-gray-500 dark:text-gray-400 font-medium tracking-wider"
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="text-sm text-gray-500 dark:text-gray-400 font-medium"
           >
             {Math.round(loadingProgress)}%
           </motion.div>
 
-          {/* Floating Elements */}
+          {/* Loading Text Animation */}
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: 1,
-              y: [0, -20, 0],
-              x: [0, 10, 0],
-              scale: [1, 1.1, 1]
-            }}
-            transition={{ 
-              opacity: { delay: 2, duration: 1 },
-              y: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              x: { duration: 4, repeat: Infinity, ease: "easeInOut" },
-              scale: { duration: 4, repeat: Infinity, ease: "easeInOut" }
-            }}
-            className="absolute -top-20 -left-10 w-20 h-20 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-xl"
-          />
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ 
-              opacity: 1,
-              y: [0, 15, 0],
-              x: [0, -8, 0],
-              scale: [1, 0.9, 1]
-            }}
-            transition={{ 
-              opacity: { delay: 2.2, duration: 1 },
-              y: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 },
-              x: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 },
-              scale: { duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 1 }
-            }}
-            className="absolute -bottom-16 -right-8 w-16 h-16 bg-gradient-to-br from-purple-400/10 to-pink-400/10 rounded-full blur-xl"
-          />
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.2, duration: 0.6 }}
+            className="mt-8"
+          >
+            <motion.span
+              className="text-gray-500 dark:text-gray-400 text-sm"
+              animate={{ opacity: [0.5, 1, 0.5] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              Loading your experience
+            </motion.span>
+          </motion.div>
         </motion.div>
 
         {/* Exit Animation Overlay */}

@@ -1,30 +1,47 @@
 [
     {
         "id": 1,
-        "title": "Project One",
-        "description": "A custom e-commerce website built for a local retailer, featuring a unique design and seamless user experience.",
-        "image": "images/portfolio-1.svg",
-        "pageSpeedScore": 98
+        "title": "Skincare Brand",
+        "category": "business",
+        "description": "A modern e-commerce website for a skincare brand featuring product showcases, ingredient highlights, and seamless online shopping experience with beautiful aesthetics.",
+        "image": "images/firstpage.png",
+        "speed": 98,
+        "tags": ["React", "Skincare", "E-commerce", "Beauty"]
     },
     {
         "id": 2,
-        "title": "Project Two",
-        "description": "A portfolio website for a freelance photographer, showcasing their work with a clean and modern layout.",
-        "image": "images/portfolio-2.svg",
-        "pageSpeedScore": 95
+        "title": "Travel Agency Website", 
+        "category": "service",
+        "description": "A comprehensive travel agency website with destination showcases, booking systems, travel packages, and interactive maps to inspire and facilitate travel planning.",
+        "image": "images/1.png",
+        "speed": 95,
+        "tags": ["React", "Travel", "Booking", "Tourism"]
     },
     {
         "id": 3,
-        "title": "Project Three",
-        "description": "A restaurant website with an online reservation system and menu display, designed to enhance customer engagement.",
-        "image": "images/portfolio-3.svg",
-        "pageSpeedScore": 97
+        "title": "Studio Website",
+        "category": "service", 
+        "description": "A creative studio website showcasing portfolio work, services, and team expertise with modern design and smooth user experience for creative professionals.",
+        "image": "images/2.png",
+        "speed": 97,
+        "tags": ["React", "Creative", "Portfolio", "Studio"]
     },
     {
         "id": 4,
-        "title": "Project Four",
-        "description": "A corporate website for a consulting firm, featuring a professional design and easy navigation.",
-        "image": "images/portfolio-4.svg",
-        "pageSpeedScore": 96
+        "title": "Honey Products Shop",
+        "category": "business",
+        "description": "An organic honey products e-commerce site featuring natural product displays, farm information, health benefits, and online ordering system.",
+        "image": "images/3.png",
+        "speed": 96,
+        "tags": ["Next.js", "Organic", "E-commerce", "Natural Products"]
+    },
+    {
+        "id": 5,
+        "title": "Skincare Brand",
+        "category": "business",
+        "description": "An elegant skincare brand website with product catalogs, skincare routines, expert advice, and subscription services for beauty enthusiasts.",
+        "image": "images/screen.png",
+        "speed": 98,
+        "tags": ["Skincare", "Beauty", "Subscription", "Wellness"]
     }
 ]
