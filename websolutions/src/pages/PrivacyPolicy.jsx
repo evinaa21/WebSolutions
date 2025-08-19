@@ -163,8 +163,8 @@ const PrivacyPolicy = () => {
                   <div className="space-y-2">
                     <div className="flex items-center space-x-2">
                       <Mail className="w-4 h-4 text-primary-600" />
-                      <a href="mailto:hello@websolutions.design" className="text-primary-600 hover:text-primary-700">
-                        hello@websolutions.design
+                      <a href="mailto:swipetocode@gmail.com" className="text-primary-600 hover:text-primary-700">
+                        hello@swipetocode.com
                       </a>
                     </div>
                     <div className="flex items-center space-x-2">
@@ -216,9 +216,9 @@ const PrivacyPolicy = () => {
                   If you have questions about this Privacy Policy or want to exercise your rights, please contact us:
                 </p>
                 <div className="space-y-2">
-                  <p><strong>Websolutions</strong></p>
+                  <p><strong>SwipeToCode</strong></p>
                   <p>Tirana, Albania</p>
-                  <p>Email: hello@websolutions.design</p>
+                  <p>Email: hello@swipetocode.com</p>
                   <p>Phone: +355 68 878 8786</p>
                 </div>
               </div>
