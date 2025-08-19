@@ -71,7 +71,7 @@ const Footer = () => {
                     <Zap className="w-6 h-6 text-white" />
                   </motion.div>
                   <span className="text-2xl font-bold gradient-text font-display">
-                    Websolutions
+                    SwipeToCode
                   </span>
                 </Link>
                 
@@ -246,7 +246,7 @@ const Footer = () => {
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © {currentYear} Websolutions. All rights reserved.
+              © {currentYear} SwipeToCode. All rights reserved.
             </div>
             
             <div className="flex items-center space-x-6 text-sm text-gray-400">

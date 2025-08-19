@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Gauge, Smartphone, Monitor } from 'lucide-react'
 
+// NOTE: You would use a Lottie player component here.
+// For example, using 'lottie-react':
+// import Lottie from "lottie-react";
+// import animationData from "./path/to/your/lottie.json";
+// <Lottie animationData={animationData} />
+
 const Portfolio = () => {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -138,25 +144,20 @@ const Portfolio = () => {
   }
 
   return (
-    <section className="py-20 bg-gray-50 dark:bg-dark-800 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
-        {/* Only show this section if it's being used as a component on homepage */}
-        {window.location.pathname === '/' && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-              Our <span className="bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent">Portfolio</span>
-            </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-12">
-              Discover our latest projects across different industries. Each website is crafted with precision, 
-              optimized for performance, and designed to convert visitors into customers.
-            </p>
-          </motion.div>
-        )}
+    <section className="py-20 bg-black" ref={ref}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+            Our Creations
+          </h2>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            A glimpse into the future we're building for our clients.
+          </p>
+        </motion.div>
 
         {/* Filter Buttons */}
         <motion.div
@@ -198,7 +199,7 @@ const Portfolio = () => {
         {/* Projects Grid */}
         <motion.div
           layout
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
           <AnimatePresence mode="wait">
             {visibleProjects.map((project, index) => (
@@ -212,69 +213,18 @@ const Portfolio = () => {
                 whileHover={{ y: -10 }}
                 className="group"
               >
-                <div className="card overflow-hidden h-full">
-                  {/* Project Image */}
+                <div className="card overflow-hidden h-full flex flex-col">
                   <div className="relative overflow-hidden">
-                    <motion.img
+                    <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                      whileHover={{ scale: 1.1 }}
+                      className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500"
                     />
-                    
-                    {/* Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    
-                    {/* Speed Score */}
-                    <motion.div
-                      initial={{ scale: 0 }}
-                      animate={inView ? { scale: 1 } : {}}
-                      transition={{ delay: 0.5 + index * 0.05 }}
-                      className="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full font-bold flex items-center space-x-1"
-                    >
-                      <Gauge className="w-4 h-4" />
-                      <span>{project.speed}</span>
-                    </motion.div>
+                    <div className="absolute inset-0 bg-black/20"></div>
                   </div>
-
-                  {/* Project Info */}
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
-                      {project.title}
-                    </h3>
-                    
-                    <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed text-sm flex-1">
-                      {project.description}
-                    </p>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.tags && project.tags.map((tag, tagIndex) => (
-                        <span
-                          key={tagIndex}
-                          className="px-2 py-1 bg-primary-100 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-xs rounded-full font-medium"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-
-                    {/* Features */}
-                    <div className="flex items-center justify-between text-xs text-gray-500 dark:text-gray-400 mt-auto">
-                      <div className="flex items-center space-x-3">
-                        <div className="flex items-center space-x-1">
-                          <Smartphone className="w-3 h-3" />
-                          <span>Mobile</span>
-                        </div>
-                        <div className="flex items-center space-x-1">
-                          <Monitor className="w-3 h-3" />
-                          <span>Responsive</span>
-                        </div>
-                      </div>
-                      <div className="font-semibold text-green-600 dark:text-green-400">
-                        {project.speed}% Speed
-                      </div>
-                    </div>
+                  <div className="p-6 flex-grow flex flex-col">
+                    <h3 className="text-2xl font-bold text-white mb-2">{project.title}</h3>
+                    <p className="text-gray-400 flex-grow">{project.description}</p>
                   </div>
                 </div>
               </motion.div>

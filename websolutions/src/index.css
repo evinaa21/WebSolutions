@@ -8,121 +8,51 @@
   }
 
   body {
-    font-family: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    line-height: 1.6;
-    @apply bg-white dark:bg-dark-900 text-gray-900 dark:text-white transition-colors duration-300;
-    /* Prevent horizontal scroll on mobile */
+    font-family: 'Inter', sans-serif;
+    @apply bg-black text-gray-300;
     overflow-x: hidden;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    font-family: "Poppins", ui-sans-serif, system-ui, -apple-system, sans-serif;
-    @apply font-bold leading-tight;
-    /* Better line height for mobile */
-    line-height: 1.2;
-  }
-
-  /* Fix for very small screens */
-  @media (max-width: 320px) {
-    h1 {
-      font-size: 1.75rem;
-    }
-    h2 {
-      font-size: 1.5rem;
-    }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-bold text-white;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-primary-600 to-primary-700 hover:from-primary-700 hover:to-primary-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center;
-    /* Better touch targets for mobile */
-    min-height: 44px;
-  }
-
-  .btn-secondary {
-    @apply bg-gradient-to-r from-secondary-600 to-secondary-700 hover:from-secondary-700 hover:to-secondary-800 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 hover:shadow-lg text-center;
+    @apply bg-white text-black px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 hover:bg-gray-200 text-center;
     min-height: 44px;
   }
 
   .btn-outline {
-    @apply border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 text-center;
+    @apply border border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 text-center;
     min-height: 44px;
   }
 
   .card {
-    @apply bg-white dark:bg-dark-800 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2;
-    /* Prevent cards from being too wide on mobile */
+    @apply bg-gray-900/50 border border-gray-800 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:border-gray-700 hover:bg-gray-900;
     max-width: 100%;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 to-secondary-600 bg-clip-text text-transparent;
+    /* Replaced with a simple white text for minimal look */
+    @apply text-white;
   }
 
-  .floating-animation {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Better mobile menu styling */
-  .backdrop-blur-glass {
-    backdrop-filter: blur(10px);
-    background: rgba(255, 255, 255, 0.95);
-  }
-
-  .dark .backdrop-blur-glass {
-    background: rgba(15, 23, 42, 0.95);
+  /* Glassmorphism effect for header/modals */
+  .glass-effect {
+    @apply bg-black/50 backdrop-blur-lg border-b border-gray-800;
   }
 }
 
 @layer utilities {
   .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
   }
 
-  /* Mobile-specific utilities */
-  .touch-manipulation {
-    touch-action: manipulation;
-  }
-
-  .safe-top {
-    padding-top: env(safe-area-inset-top);
-  }
-
-  .safe-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-
-  /* Prevent zoom on input focus (iOS) */
-  input,
-  select,
-  textarea {
-    font-size: 16px;
-  }
-
-  @media (max-width: 640px) {
-    /* Smaller text on very small screens */
-    .text-responsive {
-      font-size: 0.875rem;
-    }
-  }
-}
-
-/* Fix for iOS viewport height issues */
-@supports (-webkit-touch-callout: none) {
-  .min-h-screen {
-    min-height: -webkit-fill-available;
-  }
-}
-
-/* Better scrolling on mobile */
-@media (max-width: 768px) {
-  * {
-    -webkit-overflow-scrolling: touch;
+  .grid-pattern {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

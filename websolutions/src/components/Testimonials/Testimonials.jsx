@@ -83,7 +83,7 @@ const Testimonials = () => {
             What Our <span className="gradient-text">Clients</span> Say
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Real feedback from local business owners who chose WebSolutions.
+            Real feedback from business owners who chose SwipeToCode.
           </p>
         </motion.div>
 
