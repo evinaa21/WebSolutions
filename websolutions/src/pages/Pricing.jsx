@@ -156,22 +156,24 @@ const Pricing = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {{
-              q: 'Can I cancel anytime?',
-              a: 'Yes, 30 days notice required.'
-            },
-            {
-              q: 'Are changes included?',
-              a: 'Unlimited revisions included.'
-            },
-            {
-              q: 'How fast is delivery?',
-              a: 'Most sites completed in 7-14 days.'
-            },
-            {
-              q: 'What about hosting?',
-              a: 'Enterprise hosting included.'
-            }].map((faq, index) => (
+            {[
+              {
+                q: 'Can I cancel anytime?',
+                a: 'Yes, 30 days notice required.'
+              },
+              {
+                q: 'Are changes included?',
+                a: 'Unlimited revisions included.'
+              },
+              {
+                q: 'How fast is delivery?',
+                a: 'Most sites completed in 7-14 days.'
+              },
+              {
+                q: 'What about hosting?',
+                a: 'Enterprise hosting included.'
+              }
+            ].map((faq, index) => (
               <div key={index} className="card p-6">
                 <h4 className="text-sm font-medium text-white mb-2 tracking-wide">
                   {faq.q.toUpperCase()}
