@@ -1,22 +1,16 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
 import Portfolio from '../components/Portfolio/Portfolio'
 
 const PortfolioPage = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
-
   return (
-    <div className="pt-24"> {/* Changed from pt-20 to pt-24 */}
+    <div className="pt-24 bg-black">
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-primary-50 via-white to-secondary-50 dark:from-dark-900 dark:via-dark-800 dark:to-dark-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" ref={ref}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
@@ -24,7 +18,7 @@ const PortfolioPage = () => {
               Our <span className="gradient-text">Portfolio</span>
             </h1>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
-              See how we've helped businesses like yours achieve their online goals with 
+              See how we've helped businesses like yours achieve their online goals with
               custom-coded websites that perform exceptionally.
             </p>
           </motion.div>

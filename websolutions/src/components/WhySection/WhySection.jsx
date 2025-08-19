@@ -1,58 +1,35 @@
-import React from 'react'
-import { motion } from 'framer-motion'
-import { useInView } from 'react-intersection-observer'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+// import Lottie from 'lottie-react';
+// import codeAnimation from '../../assets/lottie/code.json';
 
 const WhySection = () => {
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
 
   const features = [
-    {
-      id: '01',
-      title: 'Custom Code',
-      description: 'Hand-written code optimized for performance and scalability. No templates or page builders.'
-    },
-    {
-      id: '02',
-      title: 'Zero Upfront',
-      description: 'Start with no initial payment. Transparent monthly pricing with no hidden costs.'
-    },
-    {
-      id: '03',
-      title: '24/7 Support',
-      description: 'Unlimited revisions and round-the-clock technical support for your peace of mind.'
-    },
-    {
-      id: '04',
-      title: 'Ultra Fast',
-      description: '99+ PageSpeed scores guaranteed. Faster loading times than any competitor.'
-    },
-    {
-      id: '05',
-      title: 'Secure Hosting',
-      description: 'Enterprise-grade hosting with automatic updates and security monitoring included.'
-    },
-    {
-      id: '06',
-      title: 'Mobile First',
-      description: 'Responsive design that works flawlessly across all devices and screen sizes.'
-    }
-  ]
+    { id: '01', title: 'Pure Code', description: 'Hand-written for peak performance. No templates, no bloat.' },
+    { id: '02', title: 'Futuristic Design', description: 'Stunning, modern aesthetics that set you apart from the competition.' },
+    { id: '03', title: 'Unlimited Support', description: 'Your dedicated team for any edits, available 24/7.' },
+    { id: '04', title: 'Blazing Speed', description: 'Websites engineered to load instantly, boosting SEO and UX.' },
+    { id: '05', title: 'Total Security', description: 'Secure hosting and proactive monitoring are always included.' },
+    { id: '06', title: 'Transparent Price', description: 'One simple monthly fee. No upfront costs, no hidden charges.' },
+  ];
 
   return (
-    <section className="py-20 bg-black relative" ref={ref}>
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="py-28 bg-black relative" ref={ref}>
+      <div className="absolute inset-0 tech-grid opacity-20"></div>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8 relative">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6 glow-text">
-            WHY SWIPETOCODE
+          <h2 className="text-4xl md:text-5xl font-medium text-white mb-6 glow-text">
+            The SwipeToCode Difference
           </h2>
-          <div className="w-24 h-px bg-white mx-auto mb-8"></div>
-          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
-            Modern development practices meet minimal design philosophy
+          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
+            We don't just build websites. We forge digital experiences.
           </p>
         </motion.div>
 
@@ -63,33 +40,26 @@ const WhySection = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group"
             >
-              <div className="card p-8 h-full hover:bg-gray-900/80 transition-all duration-300">
-                {/* Feature Number */}
-                <div className="text-xs text-gray-500 font-mono tracking-widest mb-4">
-                  {feature.id}
+              <div className="card p-8 h-full">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-xl font-semibold text-white">{feature.title}</h3>
+                  <span className="text-sm text-gray-600 font-mono">{feature.id}</span>
                 </div>
-                
-                {/* Lottie Animation Placeholder */}
-                <div className="w-12 h-12 border border-gray-800 mb-6 flex items-center justify-center group-hover:border-gray-600 transition-colors">
-                  <div className="w-6 h-6 bg-gray-800 group-hover:bg-gray-600 transition-colors"></div>
+                <div className="w-16 h-16 mb-6">
+                  {/* <Lottie animationData={codeAnimation} loop={true} /> */}
+                  <div className="w-full h-full border border-gray-800 flex items-center justify-center">
+                    <p className="text-xs text-gray-700">LOTTIE</p>
+                  </div>
                 </div>
-                
-                <h3 className="text-xl font-medium text-white mb-4 tracking-wide">
-                  {feature.title}
-                </h3>
-                
-                <p className="text-gray-400 leading-relaxed text-sm">
-                  {feature.description}
-                </p>
+                <p className="text-gray-400 leading-relaxed">{feature.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default WhySection
+export default WhySection;

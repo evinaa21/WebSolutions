@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import portfolioData from '../../data/portfolio.json'
+import { ArrowUpRight } from 'lucide-react'
 
 const Portfolio = () => {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -22,81 +23,53 @@ const Portfolio = () => {
   const visibleProjects = filteredProjects.slice(0, visibleCount)
 
   return (
-    <section className="py-20 bg-black" ref={ref}>
+    <section className="py-28 bg-black" ref={ref}>
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          className="text-center mb-16"
+          className="mb-20"
         >
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6 glow-text">
+          <h2 className="text-4xl md:text-5xl font-medium text-white mb-6 glow-text">
             SELECTED WORK
           </h2>
-          <div className="w-24 h-px bg-white mx-auto mb-8"></div>
+          <p className="text-lg text-gray-400 max-w-3xl">
+            A showcase of our commitment to design, performance, and innovation.
+          </p>
         </motion.div>
 
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.2 }}
-          className="flex justify-center mb-12"
-        >
-          <div className="flex space-x-8">
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`text-sm font-mono tracking-wider transition-colors duration-300 ${
-                  activeFilter === filter.id
-                    ? 'text-white border-b border-white pb-1'
-                    : 'text-gray-500 hover:text-gray-300'
-                }`}
-              >
-                {filter.label.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Projects Grid */}
-        <motion.div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="space-y-20">
           <AnimatePresence mode="wait">
             {visibleProjects.map((project, index) => (
               <motion.div
                 key={project.id}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
                 exit={{ opacity: 0, y: -30 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group cursor-pointer"
+                className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center group"
               >
-                <div className="relative overflow-hidden bg-gray-950 border border-gray-800 hover:border-gray-600 transition-all duration-300">
-                  <div className="aspect-video overflow-hidden">
+                <div className={`md:col-span-3 ${index % 2 === 1 ? 'md:order-2' : ''}`}>
+                  <div className="overflow-hidden border border-gray-800">
                     <img
                       src={project.image}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                     />
                   </div>
-                  <div className="p-6">
-                    <div className="flex justify-between items-start mb-3">
-                      <h3 className="text-lg font-medium text-white tracking-wide">
-                        {project.title}
-                      </h3>
-                      <span className="text-xs text-gray-500 font-mono">
-                        {String(index + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                    <p className="text-sm text-gray-400 leading-relaxed">
-                      {project.description}
-                    </p>
-                  </div>
+                </div>
+                <div className={`md:col-span-2 ${index % 2 === 1 ? 'md:order-1' : ''}`}>
+                  <p className="text-sm text-gray-500 font-mono mb-4">{project.category.toUpperCase()}</p>
+                  <h3 className="text-3xl font-semibold text-white mb-4">{project.title}</h3>
+                  <p className="text-gray-400 mb-6">{project.description}</p>
+                  <a href="#" className="btn-outline inline-flex items-center gap-2 group">
+                    View Project <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  </a>
                 </div>
               </motion.div>
             ))}
           </AnimatePresence>
-        </motion.div>
+        </div>
 
         {/* Load More */}
         {visibleCount < filteredProjects.length && (
