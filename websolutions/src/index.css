@@ -59,4 +59,62 @@
     @apply w-full bg-transparent border-0 border-b-2 border-gray-700 text-white placeholder-gray-500 focus:border-white focus:ring-0 transition-colors duration-300 text-lg;
     font-family: 'JetBrains Mono', monospace;
   }
+
+  .icon-stroke path,
+  .icon-stroke circle,
+  .icon-stroke line,
+  .icon-stroke polyline {
+    stroke: #fff;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+
+  .dash-anim {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 120;
+    animation: dash 2.2s ease forwards;
+  }
+
+  .pulse-anim {
+    animation: pulse 2.4s ease-in-out infinite;
+    transform-origin: center;
+  }
+
+  .blink-anim {
+    animation: blink 1.8s ease-in-out infinite;
+  }
+
+  .float-anim {
+    animation: float 3.5s ease-in-out infinite;
+  }
+
+  .draw-loop {
+    stroke-dasharray: 90;
+    stroke-dashoffset: 90;
+    animation: drawLoop 4s linear infinite;
+  }
+
+  @keyframes dash {
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes pulse {
+    0%,100% { transform: scale(1); opacity:.9 }
+    50% { transform: scale(1.12); opacity:1 }
+  }
+  @keyframes blink {
+    0%,20%,100% { opacity: .2 }
+    50% { opacity: 1 }
+  }
+  @keyframes float {
+    0%,100% { transform: translateY(0) }
+    50% { transform: translateY(-6px) }
+  }
+  @keyframes drawLoop {
+    0% { stroke-dashoffset: 90; }
+    40% { stroke-dashoffset: 0; }
+    60% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -90; }
+  }
 }
