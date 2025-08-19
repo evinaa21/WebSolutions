@@ -23,7 +23,7 @@ const Header = () => {
   const navItems = [
     { path: '/', label: 'Home' },
     { path: '/about', label: 'About' },
-    { path: '/portfolio', label: 'Portfolio' },
+    { path: '/portfolio', label: 'Work' },
     { path: '/pricing', label: 'Pricing' },
     { path: '/contact', label: 'Contact' }
   ]
@@ -37,33 +37,36 @@ const Header = () => {
         scrolled ? 'glass-effect' : 'bg-transparent'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
-            <img src="/images/logo.svg" alt="SwipeToCode Logo" className="w-8 h-8" />
-            <span className="text-xl font-bold text-white">
-              SwipeToCode
+            <div className="w-6 h-6 border border-gray-500 group-hover:border-white transition-colors duration-300">
+              <div className="w-full h-full bg-gray-500 group-hover:bg-white transition-colors duration-300"></div>
+            </div>
+            <span className="text-lg font-medium text-white tracking-wider" style={{ fontFamily: 'JetBrains Mono, monospace' }}>
+              SWIPETOCODE
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md:flex items-center space-x-12">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
-                className={`relative font-medium transition-colors duration-300 ${
+                className={`relative text-sm font-medium transition-colors duration-300 tracking-wider ${
                   location.pathname === item.path
                     ? 'text-white'
                     : 'text-gray-400 hover:text-white'
                 }`}
+                style={{ fontFamily: 'JetBrains Mono, monospace' }}
               >
-                {item.label}
+                {item.label.toUpperCase()}
                 {location.pathname === item.path && (
                   <motion.div
                     layoutId="activeTab"
-                    className="absolute -bottom-2 left-0 right-0 h-0.5 bg-white rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-white"
                   />
                 )}
               </Link>
@@ -74,9 +77,9 @@ const Header = () => {
           <motion.button
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-300 hover:bg-gray-800 transition-colors"
+            className="md:hidden p-2 text-gray-300 hover:text-white transition-colors"
           >
-            {isOpen ? <X size={24} /> : <Menu size={24} />}
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
           </motion.button>
         </div>
       </div>
@@ -90,18 +93,19 @@ const Header = () => {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden glass-effect"
           >
-            <nav className="py-4 space-y-2 px-4">
+            <nav className="py-4 space-y-1 px-6">
               {navItems.map((item) => (
                 <Link
                   key={item.path}
                   to={item.path}
-                  className={`block px-4 py-3 rounded-lg font-medium transition-all duration-200 ${
+                  className={`block px-4 py-3 text-sm font-medium transition-colors duration-200 tracking-wider ${
                     location.pathname === item.path
-                      ? 'bg-gray-800 text-white'
-                      : 'text-gray-300 hover:bg-gray-800'
+                      ? 'text-white bg-gray-800/50'
+                      : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
                   }`}
+                  style={{ fontFamily: 'JetBrains Mono, monospace' }}
                 >
-                  {item.label}
+                  {item.label.toUpperCase()}
                 </Link>
               ))}
             </nav>

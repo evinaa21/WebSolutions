@@ -1,159 +1,92 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { Code2, DollarSign, Headphones, Zap, Shield, Smartphone } from 'lucide-react'
 
 const WhySection = () => {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1
-  })
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const features = [
     {
-      icon: Code2,
-      title: "Custom-coded",
-      description: "No templates or drag-and-drop builders. Every line of code is written specifically for your business.",
-      color: "from-blue-500 to-blue-600"
+      id: '01',
+      title: 'Custom Code',
+      description: 'Hand-written code optimized for performance and scalability. No templates or page builders.'
     },
     {
-      icon: DollarSign,
-      title: "$0 upfront",
-      description: "Start with zero down payment. Cancel anytime. No hidden fees or long-term contracts required.",
-      color: "from-green-500 to-green-600"
+      id: '02',
+      title: 'Zero Upfront',
+      description: 'Start with no initial payment. Transparent monthly pricing with no hidden costs.'
     },
     {
-      icon: Headphones,
-      title: "Unlimited edits & 24/7 support",
-      description: "Need changes? We're here 24/7. Unlimited revisions and round-the-clock technical support.",
-      color: "from-purple-500 to-purple-600"
+      id: '03',
+      title: '24/7 Support',
+      description: 'Unlimited revisions and round-the-clock technical support for your peace of mind.'
     },
     {
-      icon: Zap,
-      title: "Lightning-fast performance",
-      description: "99+ PageSpeed scores guaranteed. Your website will load faster than your competition.",
-      color: "from-yellow-500 to-yellow-600"
+      id: '04',
+      title: 'Ultra Fast',
+      description: '99+ PageSpeed scores guaranteed. Faster loading times than any competitor.'
     },
     {
-      icon: Shield,
-      title: "Hosting, updates, and SEO included",
-      description: "Everything is managed for you. Hosting, security updates, and SEO optimization all included.",
-      color: "from-red-500 to-red-600"
+      id: '05',
+      title: 'Secure Hosting',
+      description: 'Enterprise-grade hosting with automatic updates and security monitoring included.'
     },
     {
-      icon: Smartphone,
-      title: "Mobile-first design",
-      description: "Every website is designed mobile-first and looks perfect on all devices and screen sizes.",
-      color: "from-indigo-500 to-indigo-600"
+      id: '06',
+      title: 'Mobile First',
+      description: 'Responsive design that works flawlessly across all devices and screen sizes.'
     }
   ]
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { y: 50, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  }
-
   return (
-    <section className="py-20 bg-white dark:bg-dark-900 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.1'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-        }} />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" ref={ref}>
+    <section className="py-20 bg-black relative" ref={ref}>
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6 font-display">
-            Why <span className="gradient-text">SwipeToCode</span>?
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-white mb-6 glow-text">
+            WHY SWIPETOCODE
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            We're not just another web design agency. We're your dedicated development team, 
-            creating custom solutions that actually work for your business.
+          <div className="w-24 h-px bg-white mx-auto mb-8"></div>
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto">
+            Modern development practices meet minimal design philosophy
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <motion.div
-              key={index}
-              variants={itemVariants}
-              whileHover={{ y: -10, scale: 1.02 }}
+              key={feature.id}
+              initial={{ opacity: 0, y: 30 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
               className="group"
             >
-              <div className="card p-8 h-full">
-                <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  className={`w-16 h-16 rounded-xl bg-gradient-to-r ${feature.color} flex items-center justify-center mb-6 group-hover:shadow-lg transition-all duration-300`}
-                >
-                  <feature.icon className="w-8 h-8 text-white" />
-                </motion.div>
+              <div className="card p-8 h-full hover:bg-gray-900/80 transition-all duration-300">
+                {/* Feature Number */}
+                <div className="text-xs text-gray-500 font-mono tracking-widest mb-4">
+                  {feature.id}
+                </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                {/* Lottie Animation Placeholder */}
+                <div className="w-12 h-12 border border-gray-800 mb-6 flex items-center justify-center group-hover:border-gray-600 transition-colors">
+                  <div className="w-6 h-6 bg-gray-800 group-hover:bg-gray-600 transition-colors"></div>
+                </div>
+                
+                <h3 className="text-xl font-medium text-white mb-4 tracking-wide">
                   {feature.title}
                 </h3>
                 
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p className="text-gray-400 leading-relaxed text-sm">
                   {feature.description}
                 </p>
-
-                {/* Hover Effect */}
-                <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileHover={{ scaleX: 1 }}
-                  transition={{ duration: 0.3 }}
-                  className={`h-1 bg-gradient-to-r ${feature.color} mt-6 rounded-full origin-left`}
-                />
               </div>
             </motion.div>
           ))}
-        </motion.div>
-
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-center mt-16"
-        >
-          <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-primary-50 to-secondary-50 dark:from-primary-900/20 dark:to-secondary-900/20 px-8 py-4 rounded-full border border-primary-200 dark:border-primary-800">
-            <span className="text-lg font-semibold text-gray-900 dark:text-white">
-              Ready to experience the difference?
-            </span>
-            <motion.div
-              animate={{ scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="w-2 h-2 bg-green-500 rounded-full"
-            />
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   )
